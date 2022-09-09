@@ -21,7 +21,34 @@ The official documentation is hosted on **[ReadTheDocs](https://pyswarming.readt
 
 
 ## Examples
+Considering a swarm of 5 robots, they can show different behaviors by using ``pyswarming``.
+```python
+import pyswarming.behaviors as ps
 
+import numpy as np
+```
+
+
+### Target 
+```python
+# define the robot (x, y, z) position
+r_i = np.asarray([0., 0., 0.])
+
+# set the robot linear velocity
+s_i = 1.0
+
+# define a target (x, y, z) position
+T = np.asarray([8., 8., 0.])
+
+for t in range(15):
+
+    # print the robot (x, y, z) position
+    print(r_i)
+
+    # update the robot (x, y, z) position
+    r_i += s_i*ps.target(r_i, T)
+```
+![Target](Examples/pics/Target.gif)
 
 ## Contributing to pyswarming
 All kind of contributions are welcome: 
