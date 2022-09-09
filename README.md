@@ -21,15 +21,18 @@ The official documentation is hosted on **[ReadTheDocs](https://pyswarming.readt
 
 
 ## Examples
-Considering a swarm of 5 robots, they can show different behaviors by using ``pyswarming``.
+Considering a swarm of robots, they can show different behaviors by using ``pyswarming``.
 ```python
+# importing the swarming behaviors
 import pyswarming.behaviors as ps
 
+# importing numpy to work with arrays
 import numpy as np
 ```
 
 
 ### Target 
+To simplify, considering just one robot, the target behavior is shown below.
 ```python
 # define the robot (x, y, z) position
 r_i = np.asarray([0., 0., 0.])
