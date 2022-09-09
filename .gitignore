@@ -1,0 +1,4 @@
+pyswarming/__pycache__
+/dist/
+/build/
+/pyswarming.egg-info/
