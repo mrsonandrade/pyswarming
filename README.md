@@ -21,7 +21,7 @@ The official documentation is hosted on **[ReadTheDocs](https://pyswarming.readt
 
 
 ## Examples
-Considering a swarm of robots, they can show different behaviors by using ``pyswarming``.
+Considering a swarm of robots, they can show different behaviors by using ``pyswarming``. The following codes are simplified implementations, for detailed ones, see the [Examples](https://github.com/mrsonandrade/pyswarming/tree/main/Examples) folder.
 ```python
 # importing the swarming behaviors
 import pyswarming.behaviors as ps
@@ -32,7 +32,7 @@ import numpy as np
 
 
 ### Target 
-To simplify, considering just one robot, the target behavior is shown below.
+To simplify, considering just one robot.
 ```python
 # define the robot (x, y, z) position
 r_i = np.asarray([0., 0., 0.])
@@ -52,6 +52,83 @@ for t in range(15):
     r_i += s_i*ps.target(r_i, T)
 ```
 ![Target](Examples/pics/Target.gif)
+
+
+### Aggregation 
+Considering four robots.
+```python
+# define each robot (x, y, z) position
+r = np.asarray([[8., 8., 0.],
+                [-8., 8., 0.],
+                [8., -8., 0.],
+                [-8., -8., 0.]])
+
+# set the robot linear velocity
+s_i = 1.0
+
+for t in range(15):
+
+    # print the robot (x, y, z) positions
+    print(r)
+
+    # update the robot (x, y, z) positions
+    for r_ind in range(len(r)):
+        r_i = r[r_ind]
+        r_j = np.delete(r, np.array([r_ind]), axis=0)
+        r[r_ind] += s_i*ps.aggregation(r_i, r_j)
+```
+![Aggregation](Examples/pics/Aggregation.gif)
+
+
+### Repulsion 
+Considering four robots.
+```python
+# define each robot (x, y, z) position
+r = np.asarray([[1., 1., 0.],
+                [-1., 1., 0.],
+                [1., -1., 0.],
+                [-1., -1., 0.]])
+
+# set the robot linear velocity
+s_i = 1.0
+
+for t in range(15):
+
+    # print the robot (x, y, z) positions
+    print(r)
+
+    # update the robot (x, y, z) positions
+    for r_ind in range(len(r)):
+        r_i = r[r_ind]
+        r_j = np.delete(r, np.array([r_ind]), axis=0)
+        r[r_ind] += s_i*ps.repulsion(r_i, r_j, 3.0)
+```
+![Repulsion](Examples/pics/Repulsion.gif)
+
+### Aggregation + Repulsion 
+Considering four robots.
+```python
+# define each robot (x, y, z) position
+r = np.asarray([[8., 8., 0.],
+                [-8., 8., 0.],
+                [8., -8., 0.],
+                [-8., -8., 0.]])
+
+# set the robot linear velocity
+s_i = 1.0
+
+for t in range(15):
+
+    # print the robot (x, y, z) positions
+    print(r)
+
+    # update the robot (x, y, z) positions
+    for r_ind in range(len(r)):
+        r_i = r[r_ind]
+        r_j = np.delete(r, np.array([r_ind]), axis=0)
+        r[r_ind] += s_i*(ps.aggregation(r_i, r_j) + ps.repulsion(r_i, r_j, 5.0))
+```
+![AggregationRepulsion](Examples/pics/AggregationRepulsion.gif)
 
 ## Contributing to pyswarming
 All kind of contributions are welcome: 
