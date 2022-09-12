@@ -223,7 +223,7 @@ def area_coverage(r_i, r_j, A, alpha, d=2):
         array containing contribution
     """
 
-    b_AC = geofencing(r_i, A) - repulsion(r_i, r_j, alpha, d)
+    b_AC = geofencing(r_i, A) + repulsion(r_i, r_j, alpha, d)
 
     return b_AC
 
@@ -261,7 +261,7 @@ def collective_navigation(r_i, r_j, T, alpha, d=2):
         array containing contribution
     """
 
-    b_CN = target(r_i, T) - repulsion(r_i, r_j, alpha, d)
+    b_CN = target(r_i, T) + repulsion(r_i, r_j, alpha, d)
 
     return b_CN
 
@@ -304,6 +304,6 @@ def flocking(r_i, r_j, v_i, v_j, alpha, d=2):
         array containing contribution
     """
 
-    b_F = aggregation(r_i, r_j) - repulsion(r_i, r_j, alpha, d) + alignment(v_i, v_j)
+    b_F = aggregation(r_i, r_j) + repulsion(r_i, r_j, alpha, d) + alignment(v_i, v_j)
 
     return b_F
