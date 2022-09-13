@@ -1,4 +1,5 @@
 # pyswarming
+[![Tests](https://github.com/mrsonandrade/pyswarming/actions/workflows/tests_package.yml/badge.svg)](https://github.com/mrsonandrade/pyswarming/actions/workflows/tests_package.yml)
 
 <img align="left" src="docs/readme_pics/logo.png">
 
