@@ -5,3 +5,5 @@ tests/__pycache__
 /pyswarming.egg-info/
 .DS_Store
 **/.DS_Store
+/.pytest_cache/
+/.github/
