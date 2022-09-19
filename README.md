@@ -23,6 +23,12 @@ pip install pyswarming
 ## Documentation
 The official documentation is hosted on **[ReadTheDocs](https://pyswarming.readthedocs.io)**.
 
+## Algorithms covered
+This library includes the following algorithms to be used in swarm robotics:
+
+- **Aggregation**: do this [^1];
+
+[^1]: My reference.
 
 ## Examples
 Considering a swarm of robots, they can show different behaviors by using ``pyswarming``. The following codes are simplified implementations, for detailed ones, see the [Examples](https://github.com/mrsonandrade/pyswarming/tree/main/Examples) folder.
