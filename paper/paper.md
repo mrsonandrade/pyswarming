@@ -33,6 +33,9 @@ bibliography: paper.bib
 
 # Statement of Need
 
+
+[@vicsek:1995]
+[@jadbabaie:2003]
  
 
 # Example Usage 

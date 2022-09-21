@@ -34,9 +34,13 @@ Combined Behaviors
    flocking = aggregation + repulsion + alignment
 """
 
-__all__ = ['aggregation', 'alignment', 'geofencing', 'repulsion',
-           'target', 'area_coverage', 'collective_navigation',
-           'flocking']
+__all__ = ['leaderless_coordination', 'leader_following',
+            'collision_avoidance', 'attraction_alignment',
+            'preferred_direction', 'modified_attraction_alignment',
+            'heading_consensus', 'perimeter_defense',
+            'aggregation', 'alignment', 'geofencing', 'repulsion',
+            'target', 'area_coverage', 'collective_navigation',
+            'flocking']
 
 import numpy as np
 
