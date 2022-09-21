@@ -34,7 +34,6 @@ This library includes the following algorithms to be used in swarm robotics:
 - **Modified Attraction and Alignment**: the robot become attracted and aligned by considering a “social importance” factor [^4];
 - **Heading Consensus**: the collective performs heading consensus [^5];
 - **Perimeter Defense**: the robots maximize the perimeter covered in a an unknown environment [^5];
-- **Environment Exploration**: the robots provide a spatial coverage [^5];
 - **Aggregation**: makes all the individuals aggregate collectively [^6];
 - **Alignment**: the collective performs heading consensus [^6];
 - **Geofencing**: attract the robots towards the area A [^6];
