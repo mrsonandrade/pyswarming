@@ -36,7 +36,7 @@ More explanations regarding the algorithms and their use are in the API and PySw
 
 # Statement of Need
 
-As stated by Nedjah & Junior [@nedjah:2019], a significant issue in the swarm robotics field is the lack of common generic hardware platforms and controller design methodologies. Also, the authors claim an urgent need for standardization of software, to allow a possible flourishing of swarm robotics applicability to real-world applications.
+As stated by [@nedjah:2019], a significant issue in the swarm robotics field is the lack of common generic hardware platforms and controller design methodologies. Also, the authors claim an urgent need for standardization of software, to allow a possible flourishing of swarm robotics applicability to real-world applications.
 Then, considering the challenge to organize the various methods developed in the swarm robotics field, PySwarming comes as a focal point, being flexible (written in Python) and customizable (can be easily adapted by the user), increasing the interaction of the researcher community and the advance of science.
 
 
@@ -49,7 +49,7 @@ This library includes the following algorithms to be used in swarm robotics:
 * **Collision Avoidance**: the robot stays away from neighbors in the vicinity [@couzin:2005];
 * **Attraction and Alignment**: the robot becomes attracted and aligned [@couzin:2005];
 * **Preferred Direction**: the robot has a preference to move toward a preset direction [@couzin:2005];
-* **Modified Attraction and Alignment**: the robot becomes attracted and aligned by considering a “social importance” factor [@freema:2009];
+* **Modified Attraction and Alignment**: the robot becomes attracted and aligned by considering a “social importance” factor [@freeman:2009];
 * **Heading Consensus**: the collective performs heading consensus [@chamanbaz:2017];
 * **Perimeter Defense**: the robots maximize the perimeter covered in an unknown environment [@chamanbaz:2017];
 * **Aggregation**: makes all the individuals aggregate collectively [@zoss:2018];
@@ -62,11 +62,11 @@ This library includes the following algorithms to be used in swarm robotics:
 # Example Usage 
 To start our example, we will define a set of four robots assuming we have access to their positions and orientations. Initially, they are positioned far from each other, and also they have different orientations, as can be observed in \autoref{fig1}.
 
-![Initial state of the robots. Each colored circle is a robot and the arrow are indicating their orientation. The iteration number is the red text.\label{fig1}](fig1.png)
+![The initial state of the four robots. Each colored circle is a robot and the arrows are indicating their orientation. The iteration number is the red text.\label{fig1}](fig1.png)
 
 Then, using `PySwarming` we iterate over time by summing two different behaviors: (1) Aggregation and (2) Heading Consensus. Each of these behaviors is applied to each robot at each timestep. As expected, the robots will aggregate and adjust their headings simultaneously over the simulation. The mid and final results are shown in \autoref{fig2}.
 
-![Mid (left) and final (right) state of the robots. The gray path is the plot of the last 30 iterations of each robot.\label{fig2}](fig2.png)
+![Mid (left) and final (right) state of the four robots. The gray path is the plot of the last 30 iterations of each robot.\label{fig2}](fig2.png)
 
 The above simulation can be done by using other `PySwarming` behaviors, such as Attraction and Alignment, with just a few lines of code, which demonstrates the simplicity of `PySwarming`.
 
