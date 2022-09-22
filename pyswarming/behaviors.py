@@ -213,7 +213,7 @@ def preferred_direction(theta_i, k_i, w=0.0):
     return p_theta_i
 
 
-def modified_attraction_alignment(r_i, r_j, theta_j, h_j=1.0):
+def modified_attraction_alignment(r_i, r_j, theta_j, h_j):
     """
     Calculate the desired heading of the robot
     based on the attraction and alignment algorithm
@@ -280,7 +280,7 @@ def heading_consensus(theta_i, theta_j):
         array containing the new heading
     """
 
-    theta_j_u_i = np.concatenate((theta_j, np.asarray(theta_i)), axis=0)
+    theta_j_u_i = np.concatenate((theta_j, np.asarray([theta_i])), axis=0)
 
     N = len(theta_j)
 

@@ -28,15 +28,15 @@ This library includes the following algorithms to be used in swarm robotics:
 
 - **Leaderless Coordination**: the collective performs heading consensus [^1];
 - **Leader Following**: the collective performs heading consensus with a leader [^2];
-- **Collision Avoidance**: the robot stay away from neighbors in the vicinity [^3];
-- **Attraction and Alignment**: the robot become attracted and aligned [^3];
-- **Preferred Direction**: the robot has preference to move toward a preset direction [^3];
-- **Modified Attraction and Alignment**: the robot become attracted and aligned by considering a “social importance” factor [^4];
+- **Collision Avoidance**: the robot stays away from neighbors in the vicinity [^3];
+- **Attraction and Alignment**: the robot becomes attracted and aligned [^3];
+- **Preferred Direction**: the robot has a preference to move toward a preset direction [^3];
+- **Modified Attraction and Alignment**: the robot becomes attracted and aligned by considering a “social importance” factor [^4];
 - **Heading Consensus**: the collective performs heading consensus [^5];
-- **Perimeter Defense**: the robots maximize the perimeter covered in a an unknown environment [^5];
+- **Perimeter Defense**: the robots maximize the perimeter covered in an unknown environment [^5];
 - **Aggregation**: makes all the individuals aggregate collectively [^6];
 - **Alignment**: the collective performs heading consensus [^6];
-- **Geofencing**: attract the robots towards the area A [^6];
+- **Geofencing**: attract the robots towards area A [^6];
 - **Repulsion**: makes all the individuals repulse collectively [^6];
 - **Target**: the robot goes to an specific target location [^6];
 
