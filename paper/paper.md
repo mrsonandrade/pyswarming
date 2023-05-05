@@ -19,9 +19,9 @@ authors:
 affiliations:
  - name: Federal University of Rio de Janeiro, Rio de Janeiro, Brazil
    index: 1
- - name: Laboratory of Waves and Current - LOC/COPPE/UFRJ, Rio de Janeiro, Brazil
+ - name: Ocean Engineering Program, Laboratory of Waves and Current, LOC/COPPE/UFRJ, Rio de Janeiro, Brazil
    index: 2
-date: 22 September 2022
+date: 4 May 2023
 bibliography: paper.bib
 
 ---
@@ -44,20 +44,32 @@ Then, considering the challenge to organize the various methods developed in the
 
 This library includes the following algorithms to be used in swarm robotics:
 
-* **Leaderless Coordination**: the collective performs heading consensus [@vicsek:1995];
+* **Leaderless heading consensus**: the collective performs heading consensus [@vicsek:1995];
+* **Inverse power**: ajustable attraction and repulsion laws [@reif:1999];
+* **Spring**: allows the robots to maintain a desired distance between them [@reif:1999];
+* **Force law**: mimics the gravitational force [@spears:1999];
+* **Repulsive force**: makes the individuals repulse each other [@helbing:2000];
+* **Body force**: introduces a body force that considers the radii of the robots [@helbing:2000];
+* **Inter robot spacing**: allows the robots to maintain a desired distance between them [@leonard:2001];
+* **Dissipative**: a dissipative force that reduces the "energy" of the robots [@leonard:2001];
 * **Leader Following**: the collective performs heading consensus with a leader [@jadbabaie:2003];
 * **Collision Avoidance**: the robot stays away from neighbors in the vicinity [@couzin:2005];
 * **Attraction and Alignment**: the robot becomes attracted and aligned [@couzin:2005];
 * **Preferred Direction**: the robot has a preference to move toward a preset direction [@couzin:2005];
+* **Lennard-Jones**: allows the formation of lattices [@pinciroli:2008];
+* **Virtual viscosity**: a viscous force that reduces the "oscillation" of the robots [@pinciroli:2008];
 * **Modified Attraction and Alignment**: the robot becomes attracted and aligned by considering a “social importance” factor [@freeman:2009];
 * **Heading Consensus**: the collective performs heading consensus [@chamanbaz:2017];
 * **Perimeter Defense**: the robots maximize the perimeter covered in an unknown environment [@chamanbaz:2017];
+* **Environment exploration**: provides spatial coverage [@chamanbaz:2017];
 * **Aggregation**: makes all the individuals aggregate collectively [@zoss:2018];
 * **Alignment**: the collective performs heading consensus [@zoss:2018];
 * **Geofencing**: attract the robots towards area A [@zoss:2018];
 * **Repulsion**: makes all the individuals repulse collectively [@zoss:2018];
 * **Target**: the robot goes to an specific target location [@zoss:2018];
- 
+* **Area coverage**: using the Geofencing and Repulsion algorithms [@zoss:2018];
+* **Collective navigation**: using the Target and Repulsion algorithms [@zoss:2018];
+* **Flocking**: using the Aggregation, Repulsion and Alignment algorithms [@zoss:2018];
 
 # Example Usage 
 To start our example, we will define a set of four robots assuming we have access to their positions and orientations. Initially, they are positioned far from each other, and also they have different orientations, as can be observed in \autoref{fig1}.
@@ -83,7 +95,7 @@ Finally, a PySwarming characteristic is to maintain the implementations easy to 
 
 # Acknowledgements
 
-This research is supported by CAPES (Coordination of Improvement of Higher Education Personnel), [LOC/COPPE/UFRJ](https://www.loc.ufrj.br/index.php/en/) ([Laboratory of Waves and Current](https://www.loc.ufrj.br/index.php/en/) - [Federal University of Rio de Janeiro](https://ufrj.br/en/)) and CNPq (Brazilian National Council for Scientific and Technological Development), which are gratefully acknowledged.
+This work was supported by "Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil (CAPES)", [LOC/COPPE/UFRJ](https://www.loc.ufrj.br/index.php/en/) ([Laboratory of Waves and Current](https://www.loc.ufrj.br/index.php/en/) - [Federal University of Rio de Janeiro](https://ufrj.br/en/)) and the National Council for Scientific and Technological Development (CNPq), which are gratefully acknowledged.
 
 # References
 

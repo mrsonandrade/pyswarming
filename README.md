@@ -2,7 +2,7 @@
 [![Tests](https://github.com/mrsonandrade/pyswarming/actions/workflows/tests_package.yml/badge.svg)](https://github.com/mrsonandrade/pyswarming/actions/workflows/tests_package.yml)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Documentation Status](https://readthedocs.org/projects/pyswarming/badge/?version=latest)](https://pyswarming.readthedocs.io/en/latest/?badge=latest)
-![version](https://img.shields.io/badge/version-1.0.0-blue)
+![version](https://img.shields.io/badge/version-1.1.0-blue)
 
 <img align="left" src="docs/readme_pics/logo.png">
 
@@ -17,7 +17,7 @@ pip install pyswarming
 
 ## Dependencies
 
-`pyswarming`'s dependencies are: `numpy`.
+`pyswarming`'s dependencies are: `numpy` and `matplotlib`.
 
 
 ## Documentation
@@ -26,33 +26,99 @@ The official documentation is hosted on **[ReadTheDocs](https://pyswarming.readt
 ## Algorithms covered
 This library includes the following algorithms to be used in swarm robotics:
 
-- **Leaderless Coordination**: the collective performs heading consensus [^1];
-- **Leader Following**: the collective performs heading consensus with a leader [^2];
-- **Collision Avoidance**: the robot stays away from neighbors in the vicinity [^3];
-- **Attraction and Alignment**: the robot becomes attracted and aligned [^3];
-- **Preferred Direction**: the robot has a preference to move toward a preset direction [^3];
-- **Modified Attraction and Alignment**: the robot becomes attracted and aligned by considering a “social importance” factor [^4];
-- **Heading Consensus**: the collective performs heading consensus [^5];
-- **Perimeter Defense**: the robots maximize the perimeter covered in an unknown environment [^5];
-- **Aggregation**: makes all the individuals aggregate collectively [^6];
-- **Alignment**: the collective performs heading consensus [^6];
-- **Geofencing**: attract the robots towards area A [^6];
-- **Repulsion**: makes all the individuals repulse collectively [^6];
-- **Target**: the robot goes to an specific target location [^6];
+- **Leaderless heading consensus**: the collective performs heading consensus [^1];
+- **Inverse power**: ajustable attraction and repulsion laws [^2];
+- **Spring**: allows the robots to maintain a desired distance between them [^2];
+- **Force law**: mimics the gravitational force [^3];
+- **Repulsive force**: makes the individuals repulse each other [^4];
+- **Body force**: introduces a body force that considers the radii of the robots [^4];
+- **Inter robot spacing**: allows the robots to maintain a desired distance between them [^5];
+- **Dissipative**: a dissipative force that reduces the "energy" of the robots [^5];
+- **Leader following**: the collective performs heading consensus with a leader [^6];
+- **Collision avoidance**: the robot stays away from neighbors in the vicinity [^7];
+- **Attraction alignment**: the robot becomes attracted and aligned [^7];
+- **Preferred direction**: the robot has a preference to move toward a preset direction [^7];
+- **Lennard-Jones**: allows the formation of lattices [^8];
+- **Virtual viscosity**: a viscous force that reduces the "oscillation" of the robots [^8];
+- **Modified attraction alignment**: the robot becomes attracted and aligned by considering a “social importance” factor [^9];
+- **Heading consensus**: the collective performs heading consensus [^10];
+- **Perimeter defense**: the robots maximize the perimeter covered in an unknown environment [^10];
+- **Environment exploration**: provides spatial coverage [^10];
+- **Aggregation**: makes all the individuals aggregate collectively [^11];
+- **Alignment**: the collective performs heading consensus [^11];
+- **Geofencing**: attract the robots towards area A [^11];
+- **Repulsion**: makes all the individuals repulse collectively [^11];
+- **Target**: the robot goes to an specific target location [^11];
+- **Area coverage**: using the Geofencing and Repulsion algorithms [^11];
+- **Collective navigation**: using the Target and Repulsion algorithms [^11];
+- **Flocking**: using the Aggregation, Repulsion and Alignment algorithms [^11];
 
-[^1]: Vicsek T, Czirók A, Ben-Jacob E, Cohen I, Shochet O. Novel Type of Phase Transition in a System of Self-Driven Particles. Phys Rev Lett 1995;75:1226–9. https://doi.org/10.1103/PhysRevLett.75.1226.
 
-[^2]: Jadbabaie A, Jie Lin, Morse AS. Coordination of groups of mobile autonomous agents using nearest neighbor rules. IEEE Trans Automat Contr 2003;48:988–1001. https://doi.org/10.1109/TAC.2003.812781.
+[^1]: T. Vicsek, A. Czirók, E. Ben-Jacob, I. Cohen, and O. Shochet, “Novel Type of Phase Transition in a System of Self-Driven Particles,” Phys. Rev. Lett., vol. 75, no. 6, pp. 1226–1229, Aug. 1995. https://doi.org/10.1103/PhysRevLett.75.1226.
 
-[^3]: Couzin ID, Krause J, Franks NR, Levin SA. Effective leadership and decision-making in animal groups on the move. Nature 2005;433:513–6. https://doi.org/10.1038/nature03236.
+[^2]: J. H. Reif and H. Wang, “Social potential fields: A distributed behavioral control for autonomous robots,” Robot. Auton. Syst., vol. 27, no. 3, pp. 171–194, May 1999. https://doi.org/10.1016/S0921-8890(99)00004-4.
 
-[^4]: Freeman R, Biro D. Modelling Group Navigation: Dominance and Democracy in Homing Pigeons. J Navigation 2009;62:33–40. https://doi.org/10.1017/S0373463308005080.
+[^3]: W. M. Spears and D. F. Gordon, “Using artificial physics to control agents,” in Proceedings 1999 International Conference on Information Intelligence and Systems (Cat. No.PR00446), Bethesda, MD, USA: IEEE Comput. Soc, 1999, pp. 281–288. https://doi.org/10.1109/ICIIS.1999.810278.
 
-[^5]: Chamanbaz M, Mateo D, Zoss BM, Tokić G, Wilhelm E, Bouffanais R, et al. Swarm-Enabling Technology for Multi-Robot Systems. Front Robot AI 2017;4. https://doi.org/10.3389/frobt.2017.00012.
+[^4]: D. Helbing, I. Farkas, and T. Vicsek, “Simulating dynamical features of escape panic,” Nature, vol. 407, no. 6803, pp. 487–490, Sep. 2000. https://doi.org/10.1038/35035023.
 
-[^6]: Zoss BM, Mateo D, Kuan YK, Tokić G, Chamanbaz M, Goh L, et al. Distributed system of autonomous buoys for scalable deployment and monitoring of large waterbodies. Auton Robot 2018;42:1669–89. https://doi.org/10.1007/s10514-018-9702-0.
+[^5]: N. E. Leonard and E. Fiorelli, “Virtual leaders, artificial potentials and coordinated control of groups,” presented at the IEEE Conference on Decision and Control, 2001. https://doi.org/10.1109/CDC.2001.980728.
 
-## Examples
+[^6]: A. Jadbabaie, Jie Lin, and A. S. Morse, “Coordination of groups of mobile autonomous agents using nearest neighbor rules,” IEEE Trans. Autom. Control, vol. 48, no. 6, pp. 988–1001, Jun. 2003. https://doi.org/10.1109/TAC.2003.812781.
+
+[^7]: I. D. Couzin, J. Krause, N. R. Franks, and S. A. Levin, “Effective leadership and decision-making in animal groups on the move,” Nature, vol. 433, no. 7025, pp. 513–516, Feb. 2005. https://doi.org/10.1038/nature03236.
+
+[^8]: C. Pinciroli et al., “Lattice Formation in Space for a Swarm of Pico Satellites,” in Ant Colony Optimization and Swarm Intelligence, M. Dorigo, M. Birattari, C. Blum, M. Clerc, T. Stützle, and A. F. T. Winfield, Eds., in Lecture Notes in Computer Science, vol. 5217. Berlin, Heidelberg: Springer Berlin Heidelberg, 2008, pp. 347–354. https://doi.org/10.1007/978-3-540-87527-7_36.
+
+[^9]: R. Freeman and D. Biro, “Modelling Group Navigation: Dominance and Democracy in Homing Pigeons,” J. Navig., vol. 62, no. 1, pp. 33–40, Jan. 2009. https://doi.org/10.1017/S0373463308005080.
+
+[^10]: M. Chamanbaz et al., “Swarm-Enabling Technology for Multi-Robot Systems,” Front. Robot. AI, vol. 4, Apr. 2017. https://doi.org/10.3389/frobt.2017.00012.
+
+[^11]: B. M. Zoss et al., “Distributed system of autonomous buoys for scalable deployment and monitoring of large waterbodies,” Auton. Robots, vol. 42, no. 8, pp. 1669–1689, Dec. 2018. https://doi.org/10.1007/s10514-018-9702-0.
+
+## Examples using pyswarming.swarm
+```python
+# importing the swarm creator
+import pyswarming.swarm as sw
+```
+
+### Repulsion 
+```python
+my_swarm = sw.Swarm(10, # number of robots
+                    0.5, # linear speed of each robot
+                    1.0, # sampling time
+                    [0.0, 0.0], # robots deployed randomly around x = 0.0, y = 0.0 (+- 5.0 meters)
+                    [[-50.0, 50.0], [-50.0, 50.0]], # plot limits x_lim, y_lim
+                    ['repulsion']) # list of behaviors
+my_swarm.simulate()
+```
+
+### Collective navigation 
+```python
+my_swarm = sw.Swarm(10, # number of robots
+                    0.5, # linear speed of each robot
+                    1.0, # sampling time
+                    [0.0, 0.0], # robots deployed randomly around x = 0.0, y = 0.0 (+- 5.0 meters)
+                    [[-50.0, 50.0], [-50.0, 50.0]], # plot limits x_lim, y_lim
+                    ['repulsion']) # list of behaviors
+my_swarm.behaviors_dict['r_out']['collective_navigation']['alpha'] = 2.0  # setting the strength of the repulsion
+my_swarm.behaviors_dict['r_out']['collective_navigation']['T'] = np.array([-40, -40, 0]) # setting the target
+my_swarm.simulate()
+```
+
+### Target + Aggregation 
+```python
+my_swarm = sw.Swarm(10, # number of robots
+                    0.5, # linear speed of each robot
+                    1.0, # sampling time
+                    [0.0, 0.0], # robots deployed randomly around x = 0.0, y = 0.0 (+- 5.0 meters)
+                    [[-50.0, 50.0], [-50.0, 50.0]], # plot limits x_lim, y_lim
+                    ['target','aggregation']) # list of behaviors
+my_swarm.behaviors_dict['r_out']['target']['T'] = np.array([-40, -40, 0]) # setting the target
+my_swarm.simulate()
+```
+
+## Other Examples
 Considering a swarm of robots, they can show different behaviors by using ``pyswarming``. The following codes are simplified implementations, for detailed ones, see the [Examples](https://github.com/mrsonandrade/pyswarming/tree/main/Examples) folder.
 ```python
 # importing the swarming behaviors
@@ -175,4 +241,4 @@ If you have any ideas or questions, feel free to open an issue.
 
 
 ## Acknowledgements
-This research is supported by CAPES (Coordination of Improvement of Higher Education Personnel), [LOC/COPPE/UFRJ](https://www.loc.ufrj.br/index.php/en/) ([Laboratory of Waves and Current](https://www.loc.ufrj.br/index.php/en/) - [Federal University of Rio de Janeiro](https://ufrj.br/en/)) and CNPq (Brazilian National Council for Scientific and Technological Development), which are gratefully acknowledged.
+This work was supported by "Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil (CAPES)", [LOC/COPPE/UFRJ](https://www.loc.ufrj.br/index.php/en/) ([Laboratory of Waves and Current](https://www.loc.ufrj.br/index.php/en/) - [Federal University of Rio de Janeiro](https://ufrj.br/en/)) and the National Council for Scientific and Technological Development (CNPq), which are gratefully acknowledged.

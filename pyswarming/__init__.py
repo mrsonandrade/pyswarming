@@ -15,7 +15,10 @@ Available subpackages
 ---------------------
 
 behaviors
-    Collection of swarming behaviors.
+    Collection of swarming behaviors based on different research articles.
+
+swarm
+    Allow the creation of simple virtual swarms.
 """
 
 import os
@@ -25,10 +28,12 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 # To get sub-modules
 from . import behaviors
+from . import swarm
 
 __all__ = behaviors.__all__.copy()
+__all__ = swarm.__all__.copy()
 
 name = "pyswarming"
-__version__ = "1.0.0"
-__author__ = "Emerson de Andrade, Antonio Fernandes and Joel Sales Jr"
+__version__ = "1.1.0"
+__author__ = "Emerson Martins de Andrade, Antonio Carlos Fernandes and Joel Sena Sales Jr"
 __author_email__ = "mrson@oceanica.ufrj.br"

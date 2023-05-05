@@ -17,6 +17,7 @@ sys.path.insert(0, os.path.abspath("../.."))
 
 autodoc_mock_imports = [
     "numpy",
+    "matplotlib",
 ]
 
 master_doc = "index"
@@ -24,11 +25,11 @@ master_doc = "index"
 # -- Project information -----------------------------------------------------
 
 project = "pyswarming"
-copyright = "2022, pyswarming developers"
+copyright = "2023, pyswarming developers"
 author = "pyswarming developers"
 
 # The full version, including alpha/beta/rc tags
-release = "1.0.0"
+release = "1.1.0"
 
 
 # -- General configuration ---------------------------------------------------
