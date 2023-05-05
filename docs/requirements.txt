@@ -2,5 +2,5 @@ ipykernel
 numpy
 pyswarming
 matplotlib
-nbsphinx
+nbsphinx==0.8.9
 sphinx_rtd_theme
