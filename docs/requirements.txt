@@ -2,5 +2,6 @@ ipykernel
 numpy
 pyswarming
 matplotlib
-nbsphinx==0.8.9
+nbsphinx
 sphinx_rtd_theme
+urllib3==1.26.15
