@@ -120,7 +120,7 @@ my_swarm.simulate()
 ```
 
 ## Other Examples
-Considering a swarm of robots, they can show different behaviors by using ``pyswarming``. The following codes are simplified implementations, for detailed ones, see the [Examples](https://github.com/mrsonandrade/pyswarming/tree/main/Examples) folder.
+Considering a swarm of robots, they can show different behaviors by using ``pyswarming``. The following codes are simplified implementations, for detailed ones, see the [examples](https://github.com/mrsonandrade/pyswarming/tree/main/examples) folder.
 ```python
 # importing the swarming behaviors
 import pyswarming.behaviors as ps
@@ -150,7 +150,7 @@ for t in range(15):
     # update the robot (x, y, z) position
     r_i += s_i*ps.target(r_i, T)
 ```
-![Target](Examples/pics/Target.gif)
+![Target](notebooks/pics/Target.gif)
 
 
 ### Aggregation 
@@ -176,7 +176,7 @@ for t in range(15):
         r_j = np.delete(r, np.array([r_ind]), axis=0)
         r[r_ind] += s_i*ps.aggregation(r_i, r_j)
 ```
-![Aggregation](Examples/pics/Aggregation.gif)
+![Aggregation](notebooks/pics/Aggregation.gif)
 
 
 ### Repulsion 
@@ -202,7 +202,7 @@ for t in range(15):
         r_j = np.delete(r, np.array([r_ind]), axis=0)
         r[r_ind] += s_i*ps.repulsion(r_i, r_j, 3.0)
 ```
-![Repulsion](Examples/pics/Repulsion.gif)
+![Repulsion](notebooks/pics/Repulsion.gif)
 
 ### Aggregation + Repulsion 
 Considering four robots.
@@ -227,7 +227,7 @@ for t in range(15):
         r_j = np.delete(r, np.array([r_ind]), axis=0)
         r[r_ind] += s_i*(ps.aggregation(r_i, r_j) + ps.repulsion(r_i, r_j, 5.0))
 ```
-![AggregationRepulsion](Examples/pics/AggregationRepulsion.gif)
+![AggregationRepulsion](notebooks/pics/AggregationRepulsion.gif)
 
 ## Contributing to pyswarming
 All kind of contributions are welcome: 
@@ -236,10 +236,11 @@ All kind of contributions are welcome:
 * Additional tests
 
 Follow the instructions [here](https://pyswarming.readthedocs.io/en/latest/Contribution.html)
-for submitting a PR.
+for submitting a PR (Pull Request).
 
 If you have any ideas or questions, feel free to open an issue.
 
 
 ## Acknowledgements
+The authors would like to thank the Human Resources Program from the National Agency of Oil, Gas and Bio Combustibles – PRH-ANP for the financial support.
 This work was supported by "Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil (CAPES)", [LOC/COPPE/UFRJ](https://www.loc.ufrj.br/index.php/en/) ([Laboratory of Waves and Current](https://www.loc.ufrj.br/index.php/en/) - [Federal University of Rio de Janeiro](https://ufrj.br/en/)) and the National Council for Scientific and Technological Development (CNPq), which are gratefully acknowledged.
