@@ -2,7 +2,7 @@
 [![Tests](https://github.com/mrsonandrade/pyswarming/actions/workflows/tests_package.yml/badge.svg)](https://github.com/mrsonandrade/pyswarming/actions/workflows/tests_package.yml)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Documentation Status](https://readthedocs.org/projects/pyswarming/badge/?version=latest)](https://pyswarming.readthedocs.io/en/latest/?badge=latest)
-![version](https://img.shields.io/badge/version-1.1.0-blue)
+![version](https://img.shields.io/badge/version-1.1.1-blue)
 [![Downloads](https://static.pepy.tech/badge/pyswarming)](https://pepy.tech/project/pyswarming)
 
 <img align="left" src="docs/readme_pics/logo.png">
@@ -80,42 +80,51 @@ This library includes the following algorithms to be used in swarm robotics:
 ## Examples using pyswarming.swarm
 ```python
 # importing the swarm creator
-import pyswarming.swarm as sw
+import pyswarming.swarm as ps
 ```
 
 ### Repulsion 
 ```python
-my_swarm = sw.Swarm(10, # number of robots
-                    0.5, # linear speed of each robot
-                    1.0, # sampling time
-                    [0.0, 0.0], # robots deployed randomly around x = 0.0, y = 0.0 (+- 5.0 meters)
-                    [[-50.0, 50.0], [-50.0, 50.0]], # plot limits x_lim, y_lim
-                    ['repulsion']) # list of behaviors
+# creating the swarm
+my_swarm = ps.Swarm(n = 10, # number of robots
+                    linear_speed = 0.5, # linear speed of each robot
+                    dT = 1.0, # sampling time
+                    deployment_point_limits = [[0.0, 0.0, 0.0], [5.0, 5.0, 0.0]], # lower and upper limits for the position deployment
+                    deployment_orientation_limits = [[0.0, 0.0, 0.0], [0.0, 0.0, 2*3.1415]], # lower and upper limits for the orientation deployment
+                    distribution_type =  'uniform', # type of distribution used to deploy the robots
+                    plot_limits = [[-50.0, 50.0], [-50.0, 50.0]], # plot limits x_lim, y_lim
+                    behaviors = ['repulsion']) # list of behaviors
 my_swarm.simulate()
 ```
 
 ### Collective navigation 
 ```python
-my_swarm = sw.Swarm(10, # number of robots
-                    0.5, # linear speed of each robot
-                    1.0, # sampling time
-                    [0.0, 0.0], # robots deployed randomly around x = 0.0, y = 0.0 (+- 5.0 meters)
-                    [[-50.0, 50.0], [-50.0, 50.0]], # plot limits x_lim, y_lim
-                    ['repulsion']) # list of behaviors
+# creating the swarm
+my_swarm = ps.Swarm(n = 10, # number of robots
+                    linear_speed = 0.5, # linear speed of each robot
+                    dT = 1.0, # sampling time
+                    deployment_point_limits = [[0.0, 0.0, 0.0], [5.0, 5.0, 0.0]], # lower and upper limits for the position deployment
+                    deployment_orientation_limits = [[0.0, 0.0, 0.0], [0.0, 0.0, 2*3.1415]], # lower and upper limits for the orientation deployment
+                    distribution_type =  'uniform', # type of distribution used to deploy the robots
+                    plot_limits = [[-50.0, 50.0], [-50.0, 50.0]], # plot limits x_lim, y_lim
+                    behaviors = ['collective_navigation']) # list of behaviors
 my_swarm.behaviors_dict['r_out']['collective_navigation']['alpha'] = 2.0  # setting the strength of the repulsion
-my_swarm.behaviors_dict['r_out']['collective_navigation']['T'] = np.array([-40, -40, 0]) # setting the target
+my_swarm.behaviors_dict['r_out']['collective_navigation']['T'] = [-40, -40, 0] # setting the target
 my_swarm.simulate()
 ```
 
-### Target + Aggregation 
+### Target + Aggregation
 ```python
-my_swarm = sw.Swarm(10, # number of robots
-                    0.5, # linear speed of each robot
-                    1.0, # sampling time
-                    [0.0, 0.0], # robots deployed randomly around x = 0.0, y = 0.0 (+- 5.0 meters)
-                    [[-50.0, 50.0], [-50.0, 50.0]], # plot limits x_lim, y_lim
-                    ['target','aggregation']) # list of behaviors
-my_swarm.behaviors_dict['r_out']['target']['T'] = np.array([-40, -40, 0]) # setting the target
+# creating the swarm
+my_swarm = ps.Swarm(n = 10, # number of robots
+                    linear_speed = 0.5, # linear speed of each robot
+                    dT = 1.0, # sampling time
+                    deployment_point_limits = [[0.0, 0.0, 0.0], [5.0, 5.0, 0.0]], # lower and upper limits for the position deployment
+                    deployment_orientation_limits = [[0.0, 0.0, 0.0], [0.0, 0.0, 2*3.1415]], # lower and upper limits for the orientation deployment
+                    distribution_type =  'uniform', # type of distribution used to deploy the robots
+                    plot_limits = [[-50.0, 50.0], [-50.0, 50.0]], # plot limits x_lim, y_lim
+                    behaviors = ['target','aggregation']) # list of behaviors
+my_swarm.behaviors_dict['r_out']['target']['T'] = [-40, -40, 0] # setting the target
 my_swarm.simulate()
 ```
 
@@ -130,25 +139,25 @@ import numpy as np
 ```
 
 
-### Target 
+### Target
 To simplify, considering just one robot.
 ```python
 # define the robot (x, y, z) position
-r_i = np.asarray([0., 0., 0.])
+robot_position_i = np.asarray([0., 0., 0.])
 
-# set the robot linear velocity
-s_i = 1.0
+# set the robot speed
+robot_speed_i = 1.0
 
 # define a target (x, y, z) position
-T = np.asarray([8., 8., 0.])
+target_position = np.asarray([8., 8., 0.])
 
 for t in range(15):
 
     # print the robot (x, y, z) position
-    print(r_i)
+    print(robot_position_i)
 
     # update the robot (x, y, z) position
-    r_i += s_i*ps.target(r_i, T)
+    robot_position_i += robot_speed_i*ps.target(robot_position_i, target_position)
 ```
 ![Target](notebooks/pics/Target.gif)
 
@@ -157,24 +166,24 @@ for t in range(15):
 Considering four robots.
 ```python
 # define each robot (x, y, z) position
-r = np.asarray([[8., 8., 0.],
-                [-8., 8., 0.],
-                [8., -8., 0.],
-                [-8., -8., 0.]])
+robot_position = np.asarray([[8., 8., 0.],
+                            [-8., 8., 0.],
+                            [8., -8., 0.],
+                            [-8., -8., 0.]])
 
-# set the robot linear velocity
-s_i = 1.0
+# set the robot speed
+robot_speed = 1.0
 
-for t in range(15):
+for time_i in range(15):
 
     # print the robot (x, y, z) positions
-    print(r)
+    print(robot_speed)
 
     # update the robot (x, y, z) positions
-    for r_ind in range(len(r)):
-        r_i = r[r_ind]
-        r_j = np.delete(r, np.array([r_ind]), axis=0)
-        r[r_ind] += s_i*ps.aggregation(r_i, r_j)
+    for r_ind in range(len(robot_speed)):
+        r_i = robot_speed[r_ind]
+        r_j = np.delete(robot_speed, np.array([r_ind]), axis=0)
+        robot_speed[r_ind] += robot_speed*ps.aggregation(r_i, r_j)
 ```
 ![Aggregation](notebooks/pics/Aggregation.gif)
 
@@ -183,24 +192,24 @@ for t in range(15):
 Considering four robots.
 ```python
 # define each robot (x, y, z) position
-r = np.asarray([[1., 1., 0.],
-                [-1., 1., 0.],
-                [1., -1., 0.],
-                [-1., -1., 0.]])
+robot_position = np.asarray([[1., 1., 0.],
+                            [-1., 1., 0.],
+                            [1., -1., 0.],
+                            [-1., -1., 0.]])
 
-# set the robot linear velocity
-s_i = 1.0
+# set the robot speed
+robot_speed = 1.0
 
-for t in range(15):
+for time_i in range(15):
 
     # print the robot (x, y, z) positions
-    print(r)
+    print(robot_position)
 
     # update the robot (x, y, z) positions
-    for r_ind in range(len(r)):
-        r_i = r[r_ind]
-        r_j = np.delete(r, np.array([r_ind]), axis=0)
-        r[r_ind] += s_i*ps.repulsion(r_i, r_j, 3.0)
+    for r_ind in range(len(robot_position)):
+        r_i = robot_position[r_ind]
+        r_j = np.delete(robot_position, np.array([r_ind]), axis=0)
+        robot_position[r_ind] += robot_speed*ps.repulsion(r_i, r_j, 3.0)
 ```
 ![Repulsion](notebooks/pics/Repulsion.gif)
 
@@ -208,24 +217,24 @@ for t in range(15):
 Considering four robots.
 ```python
 # define each robot (x, y, z) position
-r = np.asarray([[8., 8., 0.],
-                [-8., 8., 0.],
-                [8., -8., 0.],
-                [-8., -8., 0.]])
+robot_position = np.asarray([[8., 8., 0.],
+                            [-8., 8., 0.],
+                            [8., -8., 0.],
+                            [-8., -8., 0.]])
 
-# set the robot linear velocity
-s_i = 1.0
+# set the robot speed
+robot_speed = 1.0
 
-for t in range(15):
+for time_i in range(15):
 
     # print the robot (x, y, z) positions
-    print(r)
+    print(robot_position)
 
     # update the robot (x, y, z) positions
-    for r_ind in range(len(r)):
-        r_i = r[r_ind]
-        r_j = np.delete(r, np.array([r_ind]), axis=0)
-        r[r_ind] += s_i*(ps.aggregation(r_i, r_j) + ps.repulsion(r_i, r_j, 5.0))
+    for r_ind in range(len(robot_position)):
+        r_i = robot_position[r_ind]
+        r_j = np.delete(robot_position, np.array([r_ind]), axis=0)
+        robot_position[r_ind] += s_i*(ps.aggregation(r_i, r_j) + ps.repulsion(r_i, r_j, 5.0))
 ```
 ![AggregationRepulsion](notebooks/pics/AggregationRepulsion.gif)
 
