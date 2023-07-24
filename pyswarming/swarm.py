@@ -73,35 +73,6 @@ class Swarm:
 
     behaviors : list
         list containing the behaviors to be simulated.
-
-    Example 1
-    --------
-    >>> import pyswarming.swarm as ps
-    >>> my_swarm = ps.Swarm(n = 10, # number of robots
-                            linear_speed = 0.5, # linear speed of each robot
-                            dT = 1.0, # sampling time
-                            deployment_point_limits = [[0.0, 0.0, 0.0], [5.0, 5.0, 0.0]], # lower and upper limits for the position deployment
-                            deployment_orientation_limits = [[0.0, 0.0, 0.0], [0.0, 0.0, 2*3.1415]], # lower and upper limits for the orientation deployment
-                            distribution_type =  'uniform', # type of distribution used to deploy the robots
-                            plot_limits = [[-50.0, 50.0], [-50.0, 50.0]], # plot limits x_lim, y_lim
-                            behaviors = ['collective_navigation']) # list of behaviors
-    >>> my_swarm.behaviors_dict['r_out']['collective_navigation']['alpha'] = 2.0  # setting the strength of the repulsion
-    >>> my_swarm.behaviors_dict['r_out']['collective_navigation']['T'] = [-40, -40, 0] # setting the target position [x, y, z]
-    >>> my_swarm.simulate()
-
-    Example 2
-    --------
-    >>> import pyswarming.swarm as ps
-    >>> my_swarm = ps.Swarm(n = 10, # number of robots
-                            linear_speed = 0.5, # linear speed of each robot
-                            dT = 1.0, # sampling time
-                            deployment_point_limits = [[0.0, 0.0, 0.0], [5.0, 5.0, 0.0]], # lower and upper limits for the position deployment
-                            deployment_orientation_limits = [[0.0, 0.0, 0.0], [0.0, 0.0, 2*3.1415]], # lower and upper limits for the orientation deployment
-                            distribution_type =  'uniform', # type of distribution used to deploy the robots
-                            plot_limits = [[-50.0, 50.0], [-50.0, 50.0]], # plot limits x_lim, y_lim
-                            behaviors = ['target','aggregation']) # list of behaviors
-    >>> my_swarm.behaviors_dict['r_out']['target']['T'] = [-40, -40, 0] # setting the target position [x, y, z]
-    >>> my_swarm.simulate()
     """
 
     def __init__(self, n,
@@ -244,12 +215,26 @@ class Swarm:
                  frames = 720,
                  interval = 1,
                  blit = False,
-                 repeat = False):
+                 repeat = False,
+                 mode = 'pltshow'):
 
         # First set up the figure and the axis
         if self.dimensions == 2:
             self.fig, self.ax = plt.subplots()
 
-        anim = animation.FuncAnimation(self.fig, self._animate, frames=frames, interval=interval, blit=blit, repeat=repeat)
+        if mode == 'pltshow':
+            anim = animation.FuncAnimation(self.fig, self._animate, frames=frames, interval=interval, blit=blit, repeat=repeat)
+            plt.show()
 
-        plt.show()
+        elif mode == 'anim':
+            import warnings
+            warnings.filterwarnings("ignore")
+            anim = animation.FuncAnimation(self.fig, self._animate, frames=frames, interval=interval, blit=blit, repeat=repeat)
+            return anim
+        
+        elif mode == 'simulate':
+            for time_i in range(frames):
+                self._animate(time_i)
+            return self.pose
+
+        

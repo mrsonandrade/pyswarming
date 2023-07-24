@@ -16,21 +16,13 @@ import sys
 sys.path.insert(0, os.path.abspath("../.."))
 
 autodoc_mock_imports = [
-    "numpy",
-    "matplotlib",
 ]
 
 master_doc = "index"
 
 # -- Project information -----------------------------------------------------
 
-project = "pyswarming"
-copyright = "2023, pyswarming developers"
-author = "pyswarming developers"
-
-# The full version, including alpha/beta/rc tags
-release = "1.1.1"
-
+project = "PySwarming"
 
 # -- General configuration ---------------------------------------------------
 
@@ -38,6 +30,7 @@ release = "1.1.1"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "sphinx_rtd_theme",
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
@@ -62,7 +55,6 @@ nbsphinx_allow_errors = True
 # html_theme = 'alabaster'
 html_theme = "sphinx_rtd_theme"
 
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["_static"]
+autodoc_default_options = {
+    'special-members': '__init__',
+}

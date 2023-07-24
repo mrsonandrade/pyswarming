@@ -15,8 +15,6 @@ Introduction
 
 ``pyswarming`` is a research toolkit for Swarm Robotics.
 
-The package is currently maintained by `@mrsonandrade <http://github.com/mrsonandrade>`_.
-
 https://github.com/mrsonandrade/pyswarming
 
 Install
@@ -63,7 +61,8 @@ This library includes the following algorithms to be used in swarm robotics:
 * **Collective navigation**: using the Target and Repulsion algorithms [11]_;
 * **Flocking**: using the Aggregation, Repulsion and Alignment algorithms [11]_;
 
-.. rubric:: References
+References
+==========
 
 .. [1] T. Vicsek, A. Czirók, E. Ben-Jacob, I. Cohen, and O. Shochet, “Novel Type of Phase Transition in a System of Self-Driven Particles,” Phys. Rev. Lett., vol. 75, no. 6, pp. 1226–1229, Aug. 1995. https://doi.org/10.1103/PhysRevLett.75.1226.
 
@@ -88,157 +87,101 @@ This library includes the following algorithms to be used in swarm robotics:
 .. [11] B. M. Zoss et al., “Distributed system of autonomous buoys for scalable deployment and monitoring of large waterbodies,” Auton. Robots, vol. 42, no. 8, pp. 1669–1689, Dec. 2018. https://doi.org/10.1007/s10514-018-9702-0.
 
 
-Examples using pyswarming.swarm
-========
-::
+Examples using ``pyswarming.swarm``
+==================================
+   
+Repulsion (low-code)
+-------------------
+For this example we will use a low-code approach, i.e., ``pyswarming.swarm``, for details, see the `examples <https://github.com/mrsonandrade/pyswarming/tree/main/examples>`_ or the `notebooks <https://github.com/mrsonandrade/pyswarming/tree/main/notebooks>`_ folder.
+:: 
    # importing the swarm creator
-   import pyswarming.swarm as sw
+   import pyswarming.swarm as ps
 
-Repulsion
-------
-::
-   my_swarm = sw.Swarm(10, # number of robots
-                     0.5, # linear speed of each robot
-                     1.0, # sampling time
-                     [0.0, 0.0], # robots deployed randomly around x = 0.0, y = 0.0 (+- 5.0 meters)
-                     [[-50.0, 50.0], [-50.0, 50.0]], # plot limits x_lim, y_lim
-                     ['repulsion']) # list of behaviors
+   # creating the swarm
+   my_swarm = ps.Swarm(n = 10, # number of robots
+                       linear_speed = 0.5, # linear speed of each robot
+                       dT = 1.0, # sampling time
+                       deployment_point_limits = [[0.0, 0.0, 0.0], [5.0, 5.0, 0.0]], # lower and upper limits for the position deployment
+                       deployment_orientation_limits = [[0.0, 0.0, 0.0], [0.0, 0.0, 2*3.1415]], # lower and upper limits for the orientation deployment
+                       distribution_type =  'uniform', # type of distribution used to deploy the robots
+                       plot_limits = [[-50.0, 50.0], [-50.0, 50.0]], # plot limits x_lim, y_lim
+                       behaviors = ['repulsion']) # list of behaviors
    my_swarm.simulate()
 
-Collective navigation 
-------
+.. image:: ../readme_pics/RepulsionLowCode.gif
+
+Respulsion (without low-code)
+----------------------------
+Considering a swarm of robots, they can show different behaviors by using ``pyswarming``, for details, see the `examples <https://github.com/mrsonandrade/pyswarming/tree/main/examples>`_ or the `notebooks <https://github.com/mrsonandrade/pyswarming/tree/main/notebooks>`_ folder.
 ::
-   my_swarm = sw.Swarm(10, # number of robots
-                     0.5, # linear speed of each robot
-                     1.0, # sampling time
-                     [0.0, 0.0], # robots deployed randomly around x = 0.0, y = 0.0 (+- 5.0 meters)
-                     [[-50.0, 50.0], [-50.0, 50.0]], # plot limits x_lim, y_lim
-                     ['repulsion']) # list of behaviors
-   my_swarm.behaviors_dict['r_out']['collective_navigation']['alpha'] = 2.0  # setting the strength of the repulsion
-   my_swarm.behaviors_dict['r_out']['collective_navigation']['T'] = np.array([-40, -40, 0]) # setting the target
-   my_swarm.simulate()
+   # importing pyswarming behaviors
+   import pyswarming.behaviors as pb
 
-Target + Aggregation 
-------
-::
-   my_swarm = sw.Swarm(10, # number of robots
-                     0.5, # linear speed of each robot
-                     1.0, # sampling time
-                     [0.0, 0.0], # robots deployed randomly around x = 0.0, y = 0.0 (+- 5.0 meters)
-                     [[-50.0, 50.0], [-50.0, 50.0]], # plot limits x_lim, y_lim
-                     ['target','aggregation']) # list of behaviors
-   my_swarm.behaviors_dict['r_out']['target']['T'] = np.array([-40, -40, 0]) # setting the target
-   my_swarm.simulate()
-
-Other Examples
-========
-Considering a swarm of robots, they can show different behaviors by using ``pyswarming``. The following codes are simplified implementations, for detailed ones, see the `Examples <https://github.com/mrsonandrade/pyswarming/tree/main/Examples>`_ folder.::
-
-   import pyswarming.behaviors as ps
+   # importing numpy to work with arrays
    import numpy as np
 
-Target
-------
-::
+   # importing matplotlib to plot the animation
+   import matplotlib.pyplot as plt
+   import matplotlib.animation as animation
 
-   # define the robot (x, y, z) position
-   r_i = np.asarray([0., 0., 0.])
-
-   # set the robot linear velocity
-   s_i = 1.0
-
-   # define a target (x, y, z) position
-   T = np.asarray([8., 8., 0.])
-
-   for t in range(15):
-
-      # print the robot (x, y, z) position
-      print(r_i)
-
-      # update the robot (x, y, z) position
-      r_i += s_i*ps.target(r_i, T)
-
-
-.. image:: ../readme_pics/Target.gif
-   :alt: target
-
-Aggregation
------------
-::
+   # importing functools.partial to use in the animation
+   from functools import partial
 
    # define each robot (x, y, z) position
-   r = np.asarray([[8., 8., 0.],
-                  [-8., 8., 0.],
-                  [8., -8., 0.],
-                  [-8., -8., 0.]])
+   robot_poses = np.asarray([[1., 1., 0.],
+                           [-1., 1., 0.],
+                           [1., -1., 0.],
+                           [-1., -1., 0.]])
 
    # set the robot linear velocity
-   s_i = 1.0
+   robot_speed = 0.025
 
-   for t in range(15):
+   # First set up the figure, the axis, and the plot element we want to animate
+   fig, ax = plt.subplots()
 
-      # print the robot (x, y, z) positions
-      print(r)
+   ax.set_xlim([-10,10])
+   ax.set_ylim([-10,10])
+   ax.set_xlabel('X(m)')
+   ax.set_ylabel('Y(m)')
+   ax.grid()
+   ax.set_aspect('equal')
+   ax.set_title('Repulsion behavior')
 
-      # update the robot (x, y, z) positions
-      for r_ind in range(len(r)):
-         r_i = r[r_ind]
-         r_j = np.delete(r, np.array([r_ind]), axis=0)
-         r[r_ind] += s_i*ps.aggregation(r_i, r_j)
+   robot1, = ax.plot([], [], marker='o', lw=0)
+   robot2, = ax.plot([], [], marker='o', lw=0)
+   robot3, = ax.plot([], [], marker='o', lw=0)
+   robot4, = ax.plot([], [], marker='o', lw=0)
 
-.. image:: ../readme_pics/Aggregation.gif
+   # initialization function: plot the background of each frame
+   def init():
+      robot1.set_data([], [])
+      robot2.set_data([], [])
+      robot3.set_data([], [])
+      robot4.set_data([], [])
+      return (robot1,robot2,robot3,robot4,)
 
-Repulsion
----------
-::
+   # animation function. This is called sequentially
+   def animate(i, robot_poses):
+      for r_ind in range(len(robot_poses)):
+         r_i = robot_poses[r_ind]
+         r_j = np.delete(robot_poses, np.array([r_ind]), axis=0)
+         robot_poses[r_ind] += robot_speed*pb.repulsion(r_i, r_j, 5.0)
+      robot1.set_data(robot_poses[0][0], robot_poses[0][1])
+      robot2.set_data(robot_poses[1][0], robot_poses[1][1])
+      robot3.set_data(robot_poses[2][0], robot_poses[2][1])
+      robot4.set_data(robot_poses[3][0], robot_poses[3][1])
+      return (robot1,robot2,robot3,robot4,)
 
-   # define each robot (x, y, z) position
-   r = np.asarray([[1., 1., 0.],
-                  [-1., 1., 0.],
-                  [1., -1., 0.],
-                  [-1., -1., 0.]])
+   # call the animator. blit=True means only re-draw the parts that 
+   # have changed.
+   anim = animation.FuncAnimation(fig, partial(animate, robot_poses=robot_poses), init_func=init,
+                                 frames=480, interval=1, blit=True)
 
-   # set the robot linear velocity
-   s_i = 1.0
-
-   for t in range(15):
-
-      # print the robot (x, y, z) positions
-      print(r)
-
-      # update the robot (x, y, z) positions
-      for r_ind in range(len(r)):
-         r_i = r[r_ind]
-         r_j = np.delete(r, np.array([r_ind]), axis=0)
-         r[r_ind] += s_i*ps.repulsion(r_i, r_j, 3.0)
+   anim
+   plt.show()
 
 .. image:: ../readme_pics/Repulsion.gif
 
-Aggregation + Repulsion
------------------------
-::
-
-   # define each robot (x, y, z) position
-   r = np.asarray([[8., 8., 0.],
-                  [-8., 8., 0.],
-                  [8., -8., 0.],
-                  [-8., -8., 0.]])
-
-   # set the robot linear velocity
-   s_i = 1.0
-
-   for t in range(15):
-
-      # print the robot (x, y, z) positions
-      print(r)
-
-      # update the robot (x, y, z) positions
-      for r_ind in range(len(r)):
-         r_i = r[r_ind]
-         r_j = np.delete(r, np.array([r_ind]), axis=0)
-         r[r_ind] += s_i*(ps.aggregation(r_i, r_j) + ps.repulsion(r_i, r_j, 5.0))
-
-.. image:: ../readme_pics/AggregationRepulsion.gif
 
 
 

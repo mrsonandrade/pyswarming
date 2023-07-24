@@ -1,18 +1,10 @@
-pyswarming package
-==============
-
-pyswarming.behaviors
--------------------------------------
+PySwarming package
+=============================
 
 .. automodule:: pyswarming.behaviors
    :members:
-   :undoc-members:
-   :show-inheritance:
+   :imported-members:
 
-pyswarming.swarm
--------------------------------------
 
-.. automodule:: pyswarming.swarm
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. autoclass:: pyswarming.swarm.Swarm
+   :special-members:

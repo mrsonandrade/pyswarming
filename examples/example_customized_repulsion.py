@@ -6,7 +6,7 @@ LOC/COPPE/UFRJ      2023
 '''
 
 # importing pyswarming behaviors
-import pyswarming.behaviors as ps
+import pyswarming.behaviors as pb
 
 # importing numpy to work with arrays
 import numpy as np
@@ -56,7 +56,7 @@ def animate(i, robot_poses):
     for r_ind in range(len(robot_poses)):
         r_i = robot_poses[r_ind]
         r_j = np.delete(robot_poses, np.array([r_ind]), axis=0)
-        robot_poses[r_ind] += robot_speed*ps.repulsion(r_i, r_j, 5.0)
+        robot_poses[r_ind] += robot_speed*pb.repulsion(r_i, r_j, 5.0)
     robot1.set_data(robot_poses[0][0], robot_poses[0][1])
     robot2.set_data(robot_poses[1][0], robot_poses[1][1])
     robot3.set_data(robot_poses[2][0], robot_poses[2][1])

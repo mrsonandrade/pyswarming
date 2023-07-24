@@ -30,8 +30,12 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 from . import behaviors
 from . import swarm
 
-__all__ = behaviors.__all__.copy()
-__all__ = swarm.__all__.copy()
+modules = [behaviors.__all__.copy(), swarm.__all__.copy()]
+
+__all__ = []
+for module_i in modules:
+    for module_j in module_i:
+        __all__.append(module_j)
 
 name = "pyswarming"
 __version__ = "1.1.1"
