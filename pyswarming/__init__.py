@@ -38,6 +38,6 @@ for module_i in modules:
         __all__.append(module_j)
 
 name = "pyswarming"
-__version__ = "1.1.1"
+__version__ = "1.1.2"
 __author__ = "Emerson Martins de Andrade, Antonio Carlos Fernandes and Joel Sena Sales Jr"
 __author_email__ = "mrson@oceanica.ufrj.br"

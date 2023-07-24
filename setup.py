@@ -11,7 +11,7 @@ INSTALL_REQUIRES = [
 
 setuptools.setup(
     name="pyswarming",
-    version="1.1.1",
+    version="1.1.2",
     author="Emerson Martins de Andrade",
     author_email="mrson@oceanica.ufrj.br",
     description="A research toolkit for Swarm Robotics",
