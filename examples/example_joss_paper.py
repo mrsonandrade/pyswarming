@@ -66,7 +66,7 @@ class Swarm_paper:
         self.ax.set_ylabel('Y(m)')
         self.ax.grid()
         self.ax.set_aspect('equal')
-        self.ax.set_title('Aggregation + Heading Consensus behaviors')
+        self.ax.set_title('Aggregation + Heading Consensus + Repulsion behaviors', fontsize=9)
 
         # path history
         self.ax.plot(self.position_history[0][0], self.position_history[0][1], marker='.', lw=0, c='lightgray')
@@ -86,7 +86,7 @@ class Swarm_paper:
         self.ax.arrow(self.robot_positions[2][0], self.robot_positions[2][1], arrow_len*np.cos(self.robot_orientations[2][2]), arrow_len*np.sin(self.robot_orientations[2][2]), head_width=0.45, head_length=0.55, fc='k')
         self.ax.arrow(self.robot_positions[3][0], self.robot_positions[3][1], arrow_len*np.cos(self.robot_orientations[3][2]), arrow_len*np.sin(self.robot_orientations[3][2]), head_width=0.45, head_length=0.55, fc='k')
 
-        self.ax.text(0.7, -12.95, 'iter. %d' % (i), color='red')
+        self.ax.text(0.7, -12.95, 'iteration: %d' % (i), color='red')
 
         self.robot_positions_copy = self.robot_positions.copy()
         self.robot_orientations_copy = self.robot_orientations.copy()
@@ -94,7 +94,7 @@ class Swarm_paper:
         for r_ind in range(len(self.robot_positions)):
             r_i = self.robot_positions[r_ind]
             r_j = np.delete(self.robot_positions, np.array([r_ind]), axis=0)
-            self.robot_positions_copy[r_ind] += self.robot_linear_speed*(pb.aggregation(r_i, r_j))
+            self.robot_positions_copy[r_ind] += self.robot_linear_speed*((pb.aggregation(r_i, r_j)) + pb.repulsion(r_i, r_j, 3.0))
 
             theta_i = self.robot_orientations[r_ind]
             theta_j = np.delete(self.robot_orientations, np.array([r_ind]), axis=0)

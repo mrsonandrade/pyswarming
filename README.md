@@ -3,7 +3,7 @@
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Documentation Status](https://readthedocs.org/projects/pyswarming/badge/?version=latest)](https://pyswarming.readthedocs.io/en/latest/?badge=latest)
 ![version](https://img.shields.io/badge/version-1.1.2-blue)
-[![Downloads](https://static.pepy.tech/badge/pyswarming)](https://pepy.tech/project/pyswarming)
+[![Downloads](https://static.pepy.tech/personalized-badge/pyswarming?period=total&units=none&left_color=black&right_color=blue&left_text=Downloads)](https://pepy.tech/project/pyswarming)
 
 <img align="left" src="docs/readme_pics/logo.png">
 
@@ -132,7 +132,7 @@ my_swarm.simulate()
 Considering a swarm of robots, they can show different behaviors by using ``pyswarming``. The following codes are simplified implementations, for detailed ones, see the [examples](https://github.com/mrsonandrade/pyswarming/tree/main/examples) folder.
 ```python
 # importing the swarming behaviors
-import pyswarming.behaviors as ps
+import pyswarming.behaviors as pb
 
 # importing numpy to work with arrays
 import numpy as np
@@ -157,7 +157,7 @@ for t in range(15):
     print(robot_position_i)
 
     # update the robot (x, y, z) position
-    robot_position_i += robot_speed_i*ps.target(robot_position_i, target_position)
+    robot_position_i += robot_speed_i*pb.target(robot_position_i, target_position)
 ```
 ![Target](notebooks/pics/Target.gif)
 
@@ -183,7 +183,7 @@ for time_i in range(15):
     for r_ind in range(len(robot_speed)):
         r_i = robot_speed[r_ind]
         r_j = np.delete(robot_speed, np.array([r_ind]), axis=0)
-        robot_speed[r_ind] += robot_speed*ps.aggregation(r_i, r_j)
+        robot_speed[r_ind] += robot_speed*pb.aggregation(r_i, r_j)
 ```
 ![Aggregation](notebooks/pics/Aggregation.gif)
 
@@ -209,7 +209,7 @@ for time_i in range(15):
     for r_ind in range(len(robot_position)):
         r_i = robot_position[r_ind]
         r_j = np.delete(robot_position, np.array([r_ind]), axis=0)
-        robot_position[r_ind] += robot_speed*ps.repulsion(r_i, r_j, 3.0)
+        robot_position[r_ind] += robot_speed*pb.repulsion(r_i, r_j, 3.0)
 ```
 ![Repulsion](notebooks/pics/Repulsion.gif)
 
@@ -234,7 +234,7 @@ for time_i in range(15):
     for r_ind in range(len(robot_position)):
         r_i = robot_position[r_ind]
         r_j = np.delete(robot_position, np.array([r_ind]), axis=0)
-        robot_position[r_ind] += s_i*(ps.aggregation(r_i, r_j) + ps.repulsion(r_i, r_j, 5.0))
+        robot_position[r_ind] += s_i*(pb.aggregation(r_i, r_j) + pb.repulsion(r_i, r_j, 5.0))
 ```
 ![AggregationRepulsion](notebooks/pics/AggregationRepulsion.gif)
 
