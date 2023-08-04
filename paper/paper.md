@@ -21,7 +21,7 @@ affiliations:
    index: 1
  - name: Ocean Engineering Program, Laboratory of Waves and Current, LOC/COPPE/UFRJ, Rio de Janeiro, Brazil
    index: 2
-date: 21 July 2023
+date: 04 August 2023
 bibliography: paper.bib
 
 ---
@@ -30,7 +30,7 @@ bibliography: paper.bib
 # Summary
 
 When considering a system composed of a group of robots, swarm robotics is an approach that can be used to coordinate this group. These swarms can be inspired or not by social insects or other animal societies [@trianni:2008], where basic behaviors are usually used to compose complex tasks. These previously mentioned basic behaviors have been studied for a long time, with applications, for example, to flocks, herds, and schools [@reynolds:1987] and multi-robot teams [@balch:1998].
-However, software standardization is urgently needed to maximize the applicability of swarm robotics to real-world applications [@nedjah:2019]. Here we introduce PySwarming, a tool that makes easy the coordination of swarms and serves as a centerpiece, organizing different methods developed in the swarm robotics field. Its flexibility (written in Python) and customizability (easily customized by users) encourage interaction and scientific progress in the research community.
+Here we introduce PySwarming, a tool that makes easy the coordination of swarms and serves as a centerpiece, organizing different methods developed in the swarm robotics field. Its flexibility (written in Python) and customizability (easily customized by users) encourage interaction and scientific progress in the research community.
 
 # Introduction
 
@@ -39,7 +39,9 @@ Additionally, these swarms may or may not be inspired by social insects and othe
 
 ## Related Software Packages
 
-For more than 20 years software for swarm robotics has been created, adapted, and tested in different ways [@calderon:2022].  Software packages that allow the creation of virtual scenarios and swarm robots with sensing, processing, and actuating capabilities are crucial for the swarm robotics field. These software packages may be split into two categories: (1) *Swarm Simulators*, which in general can simulate swarm robots with sensors and actuators, and (2) *Behavior Packages*, which are composed of a bunch of ready-to-use collective behaviors. Also, these software are written in different programming languages, which may be an initial barrier for new users, depending on how much this language is difficult to learn or previous knowledge by the user. Concerning swarm robotics, [@calderon:2022] presents a good review regarding swarm robotics simulators, platforms, and applications. Therefore, for software packages we have, for instance: (1) Buzz, which is a programming language for heterogeneous robot swarms [@pinciroli:2015]. It offers primitives to define swarm behaviors and also single-robot instructions; (2) ChoiRbot by [@testa:2021], which is a toolbox for distributed cooperative robotics based on the Robot Operating System (ROS) 2; (3) ROS2Swarm, which is a package for applications of swarm robotics that provides a library of ready-to-use swarm behavioral primitives [@kaiser:2022]; (4) ARGoS, which is a multi-physics robot simulator, able to simulating large-scale swarms of robots [@pinciroli:2011]; (5) Stage Simulator, which provides a virtual world populated by mobile robots and sensors, along with various objects for the robots to sense and manipulate [@vaughan:2008]; (6) USARSim is a free 3D simulator similar to Gazebo [@carpin:2007]; (7) The Swarm-bots project [@mondada:2004] is also a robotic simulator with swarm-intelligence-based control mechanisms, but it is not publicly available; (8) and TeamBots is a Java-based collection of application programs and Java packages for multiagent mobile robotics research [@balch:1998teambots]. **Table 1** shows a summary of these software and their respective category and programming languages.
+For more than 20 years software for swarm robotics has been created, adapted, and tested in different ways [@calderon:2022].  Software packages that allow the creation of virtual scenarios and swarm robots with sensing, processing, and actuating capabilities are crucial for the swarm robotics field. These software packages may be split into two categories: (1) *Swarm Simulators*, which in general can simulate swarm robots with sensors and actuators, and (2) *Behavior Packages*, which are composed of a bunch of ready-to-use collective behaviors. Also, these software are written in different programming languages, which may be an initial barrier for new users, depending on how much this language is difficult to learn or previous knowledge by the user.
+
+Concerning swarm robotics, [@calderon:2022] presents a good review regarding swarm robotics simulators, platforms, and applications. Therefore, for software packages we have, for instance: (1) Buzz, which is a programming language for heterogeneous robot swarms [@pinciroli:2015]. It offers primitives to define swarm behaviors and also single-robot instructions; (2) ChoiRbot by [@testa:2021], which is a toolbox for distributed cooperative robotics based on the Robot Operating System (ROS) 2; (3) ROS2Swarm, which is a package for applications of swarm robotics that provides a library of ready-to-use swarm behavioral primitives [@kaiser:2022]; (4) ARGoS, which is a multi-physics robot simulator, able to simulating large-scale swarms of robots [@pinciroli:2011]; (5) Stage Simulator, which provides a virtual world populated by mobile robots and sensors, along with various objects for the robots to sense and manipulate [@vaughan:2008]; (6) USARSim is a free 3D simulator similar to Gazebo [@carpin:2007]; (7) The Swarm-bots project [@mondada:2004] is also a robotic simulator with swarm-intelligence-based control mechanisms, but it is not publicly available; (8) and TeamBots is a Java-based collection of application programs and Java packages for multiagent mobile robotics research [@balch:1998teambots]. **Table 1** shows a summary of these software and their respective category and programming languages.
 
 <div align="center">
 
@@ -65,11 +67,11 @@ Table 1: Summary of software packages with their respective categories and progr
 ## Statement of Need
 
 Concerning the *Swarm Simulators*, there is an enormous variety of excellent candidates, but it is hard to compare each other since each one has been developed with different objectives [@erez:2015]. Then, recommendations regarding this choice can be found in [@calderon:2022].
-Regarding *Behavior Packages*, their objective is to offer ready-to-use collective behaviors, depending on the programming language in which they are implemented they can be used inside different simulators. However, as can noticed from the previous section, in general, different packages are written in different languages, imposing a possible barrier for new users and the use of the package inside simulators written in a different programming language. This last fact agrees with [@nedjah:2019], where the authors claim an urgent need for standardization of software, to allow a possible flourishing of swarm robotics applicability to real-world applications.
+Regarding *Behavior Packages*, their objective is to offer ready-to-use collective behaviors, depending on the programming language in which they are implemented they can be used inside different simulators. However, as can noticed from the previous section, in general, different packages are written in different languages, imposing a possible barrier for new users and the use of the package inside simulators written in a different programming language. Moreover, important characteristics regarding the software are the possibility of leveraging existing datasets, develop new algorithms, and quick prototyping, which are not commonly found together.
 
 # PySwarming
 
-Because of the lack of a cross-platform *Behavior Package*, we introduce PySwarming, which is a tool that facilitates the coordination of swarms and serves as a centerpiece, organizing different methods developed in the swarm robotics field. The package is written in Python, which is one of the most accessible languages for learning and prototyping nowadays. Also, differently from other Python-based packages such as ChoiRbot and ROS2Swarm that are designed to work with ROS, the PySwarming package is implemented in a way that makes possible cross-platform use. In addition, the PySwarming package comes with a simple read-to-use simulation feature, which helps lower the barrier for newcomers to the field.
+Because of the lack of a cross-platform *Behavior Package*, we introduce PySwarming, which is a tool that facilitates the coordination of swarms and serves as a centerpiece, organizing different methods developed in the swarm robotics field. The package is written in Python, which is one of the most accessible languages for learning and prototyping nowadays. Also, differently from other Python-based packages such as ChoiRbot and ROS2Swarm that are designed to work with ROS, the PySwarming package is implemented in a way that makes possible cross-platform use. In addition, the PySwarming package comes with a simple ready-to-use simulation feature, which helps lower the barrier for newcomers to the field.
 
 Then, considering the challenge of organizing the various methods developed in the swarm robotics field, PySwarming comes as a focal point, being flexible (written in Python) and customizable (can be easily adapted by the user), increasing the interaction of the researcher community and the advance of science. Also, PySwarming's characteristic is to make the implementations easy to read, keeping the syntax simple and closer to their sources. For example, the target algorithm by [@zoss:2018] is easily comparable with the mathematical formula of their article.
 
@@ -109,7 +111,7 @@ Then, we have created a new behavior based on existing ones. Where, `*args` are 
 This library includes the following algorithms to be used in swarm robotics:
 
 * **Leaderless heading consensus**: the collective performs heading consensus [@vicsek:1995];
-* **Inverse power**: ajustable attraction and repulsion laws [@reif:1999];
+* **Inverse power**: adjustable attraction and repulsion laws [@reif:1999];
 * **Spring**: allows the robots to maintain a desired distance between them [@reif:1999];
 * **Force law**: mimics the gravitational force [@spears:1999];
 * **Repulsive force**: makes the individuals repulse each other [@helbing:2000];
@@ -137,7 +139,7 @@ This library includes the following algorithms to be used in swarm robotics:
 
 # Conclusion
 
-Finally, we identified that despite the existence of other *Behavior Packages*, PySwarming comes as a cross-platform one, serving as a focal point, filling an important space, which regards the organization of the different methods developed over the last decades. Also, the fact that the library is written in Python confers a lower barrier for newcomers to the field, flexibility, and customization, increasing the interaction of the researcher community and the advancement of science.
+Presented in this work is PySwarming, a package that facilitates the coordination of swarms and serves as a centerpiece, organizing different methods developed in the swarm robotics field. This package provides ready-to-use collective behaviors implementations based on the work of different authors. As shown through the examples, the fact that it is written in Python makes it more flexible and easily customizable, allowing quick prototyping. Therefore, PySwarming fills an important space, regarding the organization of the different swarming robotics methods developed over the last decade, and all the characteristics of the package confer a lower barrier for newcomers to the field, which helps to increase the interaction of the researcher community and the advancement of science.
 
 # Acknowledgements
 The authors would like to thank the Human Resources Program from the National Agency of Oil, Gas and Bio Combustibles – PRH-ANP for the financial support.
