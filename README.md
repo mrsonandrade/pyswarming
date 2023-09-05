@@ -2,7 +2,7 @@
 [![Tests](https://github.com/mrsonandrade/pyswarming/actions/workflows/tests_package.yml/badge.svg)](https://github.com/mrsonandrade/pyswarming/actions/workflows/tests_package.yml)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Documentation Status](https://readthedocs.org/projects/pyswarming/badge/?version=latest)](https://pyswarming.readthedocs.io/en/latest/?badge=latest)
-![version](https://img.shields.io/badge/version-1.1.2-blue)
+![version](https://img.shields.io/badge/version-1.1.3-blue)
 [![Downloads](https://static.pepy.tech/personalized-badge/pyswarming?period=total&units=none&left_color=black&right_color=blue&left_text=Downloads)](https://pepy.tech/project/pyswarming)
 
 <img align="left" src="docs/readme_pics/logo.png">

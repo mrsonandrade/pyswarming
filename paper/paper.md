@@ -21,7 +21,7 @@ affiliations:
    index: 1
  - name: Ocean Engineering Program, Laboratory of Waves and Current, LOC/COPPE/UFRJ, Rio de Janeiro, Brazil
    index: 2
-date: 04 August 2023
+date: 04 September 2023
 bibliography: paper.bib
 
 ---
