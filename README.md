@@ -80,10 +80,10 @@ This library includes the following algorithms to be used in swarm robotics:
 
 ## Citing PySwarming
 
-If you make use of PySwarming for your research, please cite our [JOSS publication](https://joss.theoj.org/papers/10.21105/joss.05647/status.svg). Here is the corresponding BibTeX entry:
+If you make use of PySwarming for your research, please cite our [JOSS publication](https://joss.theoj.org/papers/10.21105/joss.05647). Here is the corresponding BibTeX entry:
 
 ```
-@article{de Andrade2023,
+@article{deAndrade2023,
     doi = {10.21105/joss.05647},
     url = {https://doi.org/10.21105/joss.05647},
     year = {2023},
