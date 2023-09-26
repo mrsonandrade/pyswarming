@@ -4,6 +4,7 @@
 [![Documentation Status](https://readthedocs.org/projects/pyswarming/badge/?version=latest)](https://pyswarming.readthedocs.io/en/latest/?badge=latest)
 ![version](https://img.shields.io/badge/version-1.1.3-blue)
 [![Downloads](https://static.pepy.tech/personalized-badge/pyswarming?period=total&units=none&left_color=black&right_color=blue&left_text=Downloads)](https://pepy.tech/project/pyswarming)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.05647/status.svg)](https://doi.org/10.21105/joss.05647)
 
 <img align="left" src="docs/readme_pics/logo.png">
 
@@ -76,6 +77,25 @@ This library includes the following algorithms to be used in swarm robotics:
 [^10]: M. Chamanbaz et al., “Swarm-Enabling Technology for Multi-Robot Systems,” Front. Robot. AI, vol. 4, Apr. 2017. https://doi.org/10.3389/frobt.2017.00012.
 
 [^11]: B. M. Zoss et al., “Distributed system of autonomous buoys for scalable deployment and monitoring of large waterbodies,” Auton. Robots, vol. 42, no. 8, pp. 1669–1689, Dec. 2018. https://doi.org/10.1007/s10514-018-9702-0.
+
+## Citing PySwarming
+
+If you make use of PySwarming for your research, please cite our [JOSS publication](https://joss.theoj.org/papers/10.21105/joss.05647/status.svg). Here is the corresponding BibTeX entry:
+
+```
+@article{de Andrade2023,
+    doi = {10.21105/joss.05647},
+    url = {https://doi.org/10.21105/joss.05647},
+    year = {2023},
+    publisher = {The Open Journal},
+    volume = {8},
+    number = {89},
+    pages = {5647},
+    author = {Emerson Martins de Andrade and Antonio Carlos Fernandes and Joel Sena Sales},
+    title = {PySwarming: a research toolkit for Swarm Robotics},
+    journal = {Journal of Open Source Software}
+}
+```
 
 ## Examples using pyswarming.swarm
 ```python
@@ -248,7 +268,6 @@ Follow the instructions [here](https://pyswarming.readthedocs.io/en/latest/Contr
 for submitting a PR (Pull Request).
 
 If you have any ideas or questions, feel free to open an issue.
-
 
 ## Acknowledgements
 The authors would like to thank the Human Resources Program from the National Agency of Oil, Gas and Bio Combustibles – PRH-ANP for the financial support.
