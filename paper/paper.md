@@ -35,7 +35,7 @@ Here we introduce PySwarming, a tool that makes easy the coordination of swarms 
 # Introduction
 
 Controlling a system composed of a group of robots can be a challenge, then, swarm robotics is an approach that is widely used to coordinate this kind of system. Furthermore, the changes that the field of swarm robotics has experienced in the last decade are unprecedented, with various demonstrations showing the potential of this technology [@dorigo:2021]. Moreover, it is important to note that swarm robotics is a subfield of multi-robot systems, itself a subfield of mobile robot research [@dias:2021].
-Additionally, these swarms may or may not be inspired by social insects and other animal societies [@trianni:2008], where basic behaviors are typically used to compose complex tasks. The aforementioned behaviors have long been studied and applied, for instance, to herds, flocks, schools, etc. ([@reynolds:1987], [@toner:1998]), self-driven particles [@vicsek:1995], large collections of robots ([@reif:1999], [@spears:1999]), and multi-robot teams [@balch:1998].
+Additionally, these swarms may or may not be inspired by social insects and other animal societies [@trianni:2008], where basic behaviors are typically used to compose complex tasks. The aforementioned behaviors have long been studied and applied, for instance, to herds, flocks, schools, etc. [@reynolds:1987; @toner:1998], self-driven particles [@vicsek:1995], large collections of robots [@reif:1999; @spears:1999], and multi-robot teams [@balch:1998].
 
 ## Related Software Packages
 
