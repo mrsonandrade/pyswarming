@@ -44,8 +44,7 @@ robot3, = ax.plot([], [], marker='o', lw=0)
 robot4, = ax.plot([], [], marker='o', lw=0)
 
 # sphere function: used as region to be filled
-def sphere(x, y, z, x0=0, y0=0, z0=0, radius=4.0):
-    return (x-x0)**2 + (y-y0)**2 + (z-z0)**2 - radius
+sphere = lambda x: x[0]**2 + x[1]**2 + x[2]**2 - 4.0
 
 # initialization function: plot the background of each frame
 def init():

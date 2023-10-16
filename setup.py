@@ -6,12 +6,13 @@ with open("README.md", "r", encoding="utf8", errors="ignore") as fh:
 # Packages that pyswarming uses explicitly:
 INSTALL_REQUIRES = [
     "numpy",
+    "numdifftools",
     "matplotlib",
 ]
 
 setuptools.setup(
     name="pyswarming",
-    version="1.1.3",
+    version="1.1.4",
     author="Emerson Martins de Andrade",
     author_email="mrson@oceanica.ufrj.br",
     description="A research toolkit for Swarm Robotics",

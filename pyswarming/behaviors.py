@@ -57,7 +57,7 @@ __all__ = ['leaderless_heading_consensus', 'inverse_power', 'spring',
 
 import numpy as np
 
-from auto_differentiation import gradient
+from numdifftools import Gradient
 
 
 def leaderless_heading_consensus(theta_i, theta_j):
@@ -857,6 +857,7 @@ def geofencing(r_i, A):
 
     A : function
         function of the interested region.
+        e.g. A = lambda x: np.sqrt(x[0]+x[1]+x[2])
 
     Returns
     -------
@@ -864,9 +865,11 @@ def geofencing(r_i, A):
         array containing contribution
     """
 
-    gradA = np.asarray(gradient(A, (r_i[0],r_i[1],r_i[2])))
+    gradF = Gradient(A)
 
-    g_i = - (1.0 / (1.0 + np.exp(-A(r_i[0],r_i[1],r_i[2])))) * (gradA / np.linalg.norm(gradA))
+    gradA = gradF([r_i[0],r_i[1],r_i[2]])
+
+    g_i = - (1.0 / (1.0 + np.exp(-A([r_i[0],r_i[1],r_i[2]])))) * (gradA / np.linalg.norm(gradA))
 
     return g_i
 

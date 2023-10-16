@@ -27,7 +27,7 @@ You can install ``pyswarming`` from PyPI using pip (**Recommended**)::
 Dependencies
 ============
 
-``pyswarming``'s dependencies are: ``numpy`` and ``matplotlib``.
+``pyswarming``'s dependencies are: ``numpy``, ``numdifftools`` and ``matplotlib``.
 
 
 Algorithms covered

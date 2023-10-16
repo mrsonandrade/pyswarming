@@ -611,8 +611,7 @@ def test_geofencing_1():
     s_i = 1.0 # linear speed
 
     # sphere function: used as region to be filled
-    def sphere(x, y, z, x0=0, y0=0, z0=0, radius=4.0):
-        return (x-x0)**2 + (y-y0)**2 + (z-z0)**2 - radius
+    sphere = lambda x: x[0]**2 + x[1]**2 + x[2]**2 - 4.0
     
     for r_ind in range(len(r)):
         r_i = r[r_ind]
@@ -673,8 +672,7 @@ def test_area_coverage_1():
     s_i = 1.0 # linear speed
     
     # sphere function: used as region to be filled
-    def sphere(x, y, z, x0=0, y0=0, z0=0, radius=4.0):
-        return (x-x0)**2 + (y-y0)**2 + (z-z0)**2 - radius
+    sphere = lambda x: x[0]**2 + x[1]**2 + x[2]**2 - 4.0
     
     for r_ind in range(len(r)):
         r_i = r[r_ind]

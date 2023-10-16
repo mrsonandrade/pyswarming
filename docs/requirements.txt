@@ -1,5 +1,6 @@
 ipykernel
 numpy
+numdifftools
 pyswarming
 matplotlib
 nbsphinx
