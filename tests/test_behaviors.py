@@ -348,7 +348,7 @@ def test_lennard_jones():
     for r_ind in range(len(r)):
         r_i = r[r_ind]
         r_j = np.delete(r, np.array([r_ind]), axis=0)
-        f[r_ind] += pb.lennard_jones(r_i, r_j, epsilon, sigma)
+        f[r_ind] += pb.lennard_jones(r_i, r_j, epsilon, sigma, normalized=True)
     assert type(f) == np.ndarray
     assert len(f) > 0
     assert (f!=f0).all() == True

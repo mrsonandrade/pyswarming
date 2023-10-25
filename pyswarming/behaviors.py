@@ -515,7 +515,7 @@ def preferred_direction(theta_i, k_i, w=0.0):
     return new_theta_i
 
 
-def lennard_jones(r_i, r_j, epsilon, sigma):
+def lennard_jones(r_i, r_j, epsilon, sigma, normalized=False):
     """
     Calculates an output force that produces
     lattice formations, based on the "Lennard-Jones
@@ -538,6 +538,10 @@ def lennard_jones(r_i, r_j, epsilon, sigma):
     sigma : float
         desired distance between the robots.
 
+    normalized : boolean
+        boolean parameter to normalize each
+        term in the sum when normalized = True.
+
     Returns
     -------
     f_i : numpy.array
@@ -550,7 +554,13 @@ def lennard_jones(r_i, r_j, epsilon, sigma):
 
     for j in r_j:
         r_ij = (j - r_i)
-        f_i += ((12.0*epsilon)/r_ij) * (np.power(sigma/r_ij, 12) - np.power(sigma/r_ij, 6)) * (r_ij / np.linalg.norm(r_ij))
+
+        if normalized == True:
+            normalization_term = (r_ij / np.linalg.norm(r_ij))
+        else: 
+            normalization_term = 1.0
+
+        f_i += ((12.0*epsilon)/r_ij) * (np.power(sigma/r_ij, 12) - np.power(sigma/r_ij, 6)) * normalization_term
 
     f_i = (1.0/N) * f_i
 
