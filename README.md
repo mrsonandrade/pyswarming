@@ -269,6 +269,10 @@ for submitting a PR (Pull Request).
 
 If you have any ideas or questions, feel free to open an issue.
 
+## Star History
+[![Star History Chart](https://api.star-history.com/svg?repos=mrsonandrade/pyswarming&type=Date)](https://star-history.com/#mrsonandrade/pyswarming)
+
+
 ## Acknowledgements
-The authors would like to thank the Human Resources Program from the National Agency of Oil, Gas and Bio Combustibles – PRH-ANP for the financial support.
+The authors would like to thank the Programa de Recursos Humanos da Agência Nacional do Petróleo, Gás Natural e Biocombustíveis (PRH18-ANP) for their financial support, supported with resources from investment by oil companies qualified in the P, DI Clause of ANP Resolution no. 50/2015.
 This work was supported by "Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil (CAPES)", [LOC/COPPE/UFRJ](https://www.loc.ufrj.br/index.php/en/) ([Laboratory of Waves and Current](https://www.loc.ufrj.br/index.php/en/) - [Federal University of Rio de Janeiro](https://ufrj.br/en/)) and the National Council for Scientific and Technological Development (CNPq), which are gratefully acknowledged.
